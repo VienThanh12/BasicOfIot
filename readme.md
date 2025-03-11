@@ -12,7 +12,7 @@ This project is a simple IoT application that uses Node.js with the Express fram
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/backendIOT.git
+    git clone https://github.com/VienThanh12/BasicOfIot
     cd backendIOT
     ```
 
