@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/measurements
+Content-Type: application/json
+
+{
+    "field1": 1000,
+    "field2": 555,
+    "field3": 33
+}
