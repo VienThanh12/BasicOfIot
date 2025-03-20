@@ -6,8 +6,7 @@ app.use(express.json())
 
 const cors = require('cors')
 
-app.use(cors())
-
+app.use(cors({ origin: 'http://localhost:3000' })); // Allow specific origin
 // View engine setup
 app.set('view engine', 'ejs');
 
@@ -42,7 +41,6 @@ app.post('/api/measurements', (request, response) => {
   console.log(arrayrow);
   // send all measurements
   io.emit('measdata', s);
-  console.log(arrayrow)
 
   response.json(arrayrow)
 })  
@@ -52,7 +50,14 @@ const PORT = 3001
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
-const io = socket(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: 'http://localhost:3000', // Allow React app
+    methods: ['GET', 'POST'],       // Allowed HTTP methods
+    allowedHeaders: ['Content-Type'], // Optional: allowed headers
+    credentials: true               // Optional: allow credentials
+  }
+});
 
 io.on('connection', (socket) => {
   console.log('New connection')
